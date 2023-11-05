@@ -1,0 +1,54 @@
+[gd_scene load_steps=5 format=3 uid="uid://cb7rdnvo34ain"]
+
+[ext_resource type="Script" path="res://Player/player.gd" id="1_nj8c2"]
+[ext_resource type="Texture2D" uid="uid://bo8m515jp368m" path="res://Art/icon.svg" id="1_yk4a3"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_q2if6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_yk4a3")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cbhel"]
+size = Vector2(125, 121)
+
+[node name="Player" type="CharacterBody2D"]
+position = Vector2(353, 172)
+script = ExtResource("1_nj8c2")
+TimeToPeak = 0.4
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_q2if6")
+animation = &"idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, -0.5)
+scale = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_cbhel")
+
+[node name="DashTimer" type="Timer" parent="."]
+wait_time = 0.4
+one_shot = true
+
+[node name="DashCooldown" type="Timer" parent="."]
+wait_time = 0.7
+
+[node name="CoyoteTime" type="Timer" parent="."]
+wait_time = 0.4
+one_shot = true
+
+[node name="JumpTimer" type="Timer" parent="."]
+wait_time = 0.05
+one_shot = true
+
+[connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]
+[connection signal="timeout" from="DashCooldown" to="." method="_on_dash_cooldown_timeout"]
+[connection signal="timeout" from="CoyoteTime" to="." method="_on_coyote_time_timeout"]
+[connection signal="timeout" from="JumpTimer" to="." method="_on_jump_timer_timeout"]
