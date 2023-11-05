@@ -1,0 +1,49 @@
+[gd_scene load_steps=4 format=3 uid="uid://161cop0n8ueu"]
+
+[ext_resource type="Script" path="res://Menu's/HUD_2.gd" id="1_fht8q"]
+[ext_resource type="Texture2D" uid="uid://daivocvqid0pn" path="res://Art/img_for_Yuma/gold_1.png" id="2_fmnk5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h37ir"]
+bg_color = Color(0, 0, 0, 0.227451)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[node name="HUD" type="CanvasLayer"]
+scale = Vector2(0.25, 0.25)
+transform = Transform2D(0.25, 0, 0, 0.25, 0, 0)
+script = ExtResource("1_fht8q")
+
+[node name="Panel" type="Panel" parent="."]
+offset_right = 250.0
+offset_bottom = 107.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_h37ir")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = 11.0
+offset_top = 20.0
+offset_right = 75.0
+offset_bottom = 94.0
+texture = ExtResource("2_fmnk5")
+
+[node name="X" type="Label" parent="."]
+offset_left = 104.0
+offset_top = 26.0
+offset_right = 144.0
+offset_bottom = 98.0
+theme_override_font_sizes/font_size = 25
+text = "X
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Coins" type="Label" parent="."]
+offset_left = 144.0
+offset_top = 10.0
+offset_right = 252.0
+offset_bottom = 109.0
+theme_override_font_sizes/font_size = 70
+text = "##"
+horizontal_alignment = 1
+vertical_alignment = 1
